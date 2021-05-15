@@ -1,2 +1,3 @@
 # leetcode-playground
-adsfsdf
+
+每个语言的leetcode练习使用对应的分支名称。例如python使用名称为python的分支
