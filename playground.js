@@ -23,7 +23,7 @@ class Solutions {
             mid = Math.floor((start + end) / 2);
             console.log('start, end' + start + ' ' + end);
             if (A[mid] > target) {
-                end = mid;
+                end = mid - 1; // 既然A[mid]不等target，就不要留恋，无论start和end，都不要取这个值了，这样才能迅速逼近范围
             }
             else if (A[mid] < target) {
                 start = mid + 1;
