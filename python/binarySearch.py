@@ -1,4 +1,5 @@
 # 二分查找总结 https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/
+# 其实关注循环的 < 还是 <=，以及[left, right] 还是 [left, right)就可以了，上面的题解可以不用看，思路不一定和自己想的一样，能理解二分法就行
 A = [1, 2, 3, 4, 10]
 
 """
