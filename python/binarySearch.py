@@ -1,3 +1,4 @@
+# 二分查找总结 https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/
 """
 二分法 定义 target 是在一个在左闭右闭的区间里，即[left, right]
 """
@@ -18,6 +19,7 @@ def binarySearch(A, target):
 
 """
 二分法 定义 target 左闭右开的区间里，也就是[left, right)
+这种写法有个好处，循环结束的时候一定有left == right
 """
 A = [1, 2, 3, 4, 10]
 def binarySearch2(A, target):
