@@ -4,7 +4,8 @@
 """
 class Solution:
     def searchInsert(self, nums, target):
-        left, right = 0, len(nums) - 1
+        # 可能的题解范围是[0, len(nums)]
+        left, right = 0, len(nums)
         while left < right:
             print(f'left={left}, right={right}')
             mid = (left + right) // 2
