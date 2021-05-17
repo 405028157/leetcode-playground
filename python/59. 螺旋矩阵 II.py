@@ -5,15 +5,15 @@
 
 class Solution:
     dircState = {'right': 'bottom', 'bottom': 'left', 'left': 'top', 'top': 'right'}
-    dircHash = {'right': {1, 0}, 'bottom': {0, 1}, 'left': {-1, 0}, 'top': {0, 1}}
-    def needTurn(self, x, y, n, direction):
-        if direction == 'right' and x == n - 1:
+    dircHash = {'right': [0, 1], 'bottom': [1, 0], 'left': [0, -1], 'top': [-1, 0]}
+    def needTurn(self, x, y, n, direction, matrix):
+        x_dirc, y_dirc = self.dircHash[direction]
+        x_after, y_after = x + x_dirc, y + y_dirc
+        if x_after < 0 or x_after >= n:
             return True
-        if direction == 'left' and x == 0:
+        if y_after < 0 or y_after >= n:
             return True
-        if direction == 'top' and y == 0:
-            return True
-        if direction == 'bottom' and y == n - 1:
+        if matrix[x_after][y_after] != 0: #已经填过了，需要提前拐
             return True
         return False
 
@@ -22,21 +22,25 @@ class Solution:
         count = 1
         totalCount = n ** 2
         curState = 'right'
+        # x 代表行，y代表列
         x, y = 0, 0
         while count <= totalCount:
-            print(f'x = {x}, y = {y}, curStat = {curState}, self.dircHash[curState] = {self.dircHash[curState]}')
+            print(f'x = {x}, y = {y}, count = {count} curStat = {curState}, self.dircHash[curState] = {self.dircHash[curState]} ', end = '')
             # 这里先赋值，需要理解下，因为即使当前的x, y需要转弯了，但是matrix[x][y]依然是合法的，并且在循环之前没有给matrix赋过值
             matrix[x][y] = count
             count += 1
-            if self.needTurn(x, y, n, curState):
+            if self.needTurn(x, y, n, curState, matrix):
                 curState = self.dircState[curState]
+            print(f'nextStat = {curState} ', end = '')
             x_dirc, y_dirc = self.dircHash[curState]
+            print(f'x_dirc = {x_dirc}, y_dirc = {y_dirc}')
             x += x_dirc
             y += y_dirc
         return matrix
 
 s = Solution()
-# s.generateMatrix(3)
-print(s.dircHash['right'])
+m = s.generateMatrix(3)
+print(m)
+# print(s.dircHash['right'])
     
    
