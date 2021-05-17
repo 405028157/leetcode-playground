@@ -23,4 +23,4 @@ class Solution:
                 sum -= nums[i]
                 i += 1
             j += 1
-        return ans
+        return 0 if ans == n + 1 else ans
