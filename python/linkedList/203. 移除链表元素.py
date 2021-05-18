@@ -24,7 +24,19 @@ class Solution:
             curr = curr.next
         
         return sentinel.next
+    
+    # 递归, 时间复杂度，空间复杂度并不好，但可以学习思路
+    def removeElements2(self, head: ListNode, val: int) -> ListNode:
+        if not head:
+            return None
+        head.next = self.removeElements2(head.next, val)
+        if head.val == val:
+            return head.next
+        else:
+            return head
 
+
+# 测试
 l1 = ListNode(1)
 l1.next = ListNode(2)
 l1.next.next = ListNode(3)
