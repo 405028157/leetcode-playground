@@ -73,6 +73,7 @@ class MyLinkedList:
         if index < 0 or index >= self.size:
             return
         
+        self.size -= 1
         pred = self.head
         for _ in range(index):
             pred = pred.next
