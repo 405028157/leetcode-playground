@@ -9,6 +9,8 @@ class ListNode:
         self.val = val
         self.next = None
 
+    def __str__(self):
+        return f'{self.val}'
 class MyLinkedList:
 
     def __init__(self):
@@ -89,6 +91,7 @@ obj.addAtHead(1)
 obj.addAtHead(2)
 obj.addAtHead(3)
 obj.addAtTail(4)
+print(obj.get(1))
 # obj.addAtTail(val)
 # obj.addAtIndex(index,val)
 # obj.deleteAtIndex(index)
