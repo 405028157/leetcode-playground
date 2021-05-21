@@ -9,11 +9,9 @@ class Solution:
             return None
         last = None
         cur = head
-        next = head.next
-        while next:
+        while cur: # 尽可能拿浅显和直接的变量当做循环的条件... 但是循环结束cur是None，应该返回last
+            nxt = cur.next
             cur.next = last
             last = cur
-            cur = next
-            next = next.next
-        cur.next = last
-        return cur
+            cur = nxt
+        return last
