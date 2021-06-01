@@ -25,14 +25,17 @@ class Solution:
 
         # 一次处理两个节点
         while cur and nxt:
+            furNxt = nxt.next
+
             print(dummyHead)
             dummyHead.next = nxt
             nxt.next = cur
 
-            dummyHead = cur
-            cur = dummyHead.next
+            cur = furNxt
             nxt = cur and cur.next
+            dummyHead.next = cur # dummyHead 不需要是谁，只需要关注dummyHead.next。也不对，dummyHead.next变，laterHead也变，就找不到头节点了
         
+        print(laterHead)
         return laterHead.next
 
 l = ListNode(1)
