@@ -13,32 +13,15 @@ class ListNode:
         return string_rep
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
-        laterHead = dummyHead = ListNode()
-        dummyHead.next = head
-
-        cur = dummyHead.next
-        nxt = cur and cur.next
-
-        # 只有一个节点或者没有节点
-        if not (cur and nxt):
+        if not head or not head.next:
             return head
+        one = head
+        two = one.next
+        three = two.next
 
-        # 一次处理两个节点
-        while cur and nxt:
-            furNxt = nxt.next
-
-            print(dummyHead)
-            # 一次有三个箭头(next)需要动
-            dummyHead.next = nxt
-            nxt.next = cur
-            cur.next = furNxt
-
-            dummyHead = cur
-            cur = furNxt
-            nxt = cur and cur.next
-        
-        print(laterHead)
-        return laterHead.next
+        two.next = one
+        one.next = self.swapPairs(three)
+        return two
 
 l = ListNode(1)
 l.next = ListNode(2)
