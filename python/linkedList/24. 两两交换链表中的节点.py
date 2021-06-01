@@ -28,12 +28,14 @@ class Solution:
             furNxt = nxt.next
 
             print(dummyHead)
+            # 一次有三个箭头(next)需要动
             dummyHead.next = nxt
             nxt.next = cur
+            cur.next = furNxt
 
+            dummyHead = cur
             cur = furNxt
             nxt = cur and cur.next
-            dummyHead.next = cur # dummyHead 不需要是谁，只需要关注dummyHead.next。也不对，dummyHead.next变，laterHead也变，就找不到头节点了
         
         print(laterHead)
         return laterHead.next
