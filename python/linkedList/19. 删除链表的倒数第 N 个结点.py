@@ -6,8 +6,7 @@ class ListNode:
         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        dummy_head = ListNode()
-        dummy_head.next = head
+        dummy_head = ListNode(0, head)
         slow = fast = dummy_head
 
         # n + 1 步要先走 n 步，这 n 步如果 fast 是 None, 说明没有倒数第 n 个数，因为一共都没有 n 个数
