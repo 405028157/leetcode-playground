@@ -1,5 +1,7 @@
 # Definition for singly-linked list.
 # https://github.com/405028157/leetcode-master/blob/master/problems/0019.%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9.md
+# length长度的链表，倒数第n个结点，是正数第length - n + 1个结点
+# 有哑结点的链表，从哑结点开始，往前走几步，就是第几个结点
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
