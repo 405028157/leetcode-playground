@@ -9,8 +9,8 @@ class Solution:
         cur1, cur2 = headA, headB
         
         while cur1 != cur2:
-            cur1 = cur1 != None ? cur1.next : headB
-            cur2 = cur2 != None ? cur2.next : headA
+            cur1 = cur1.next if cur1 != None else headB
+            cur2 = cur2.next if cur2 != None else headA
         
         return cur1
         
