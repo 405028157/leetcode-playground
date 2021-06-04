@@ -1,3 +1,11 @@
+"""
+非常好的题解
+https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/
+
+关键点：
+走a+nb步一定是在环入口
+第一次相遇时慢指针已经走了nb步
+"""
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -6,26 +14,16 @@ class ListNode:
 
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
-        if not head or not head.next:
-            return None
+        fast, slow = head, head
+        while True:
+            if not (fast and fast.next):
+                return None
+            fast, slow = fast.next.next, slow.next
+            if fast == slow:
+                break
         
-        step = 0
-        slow = head
-        fast = head.next
-        while fast and slow != fast:
-            print(step)
-            step += 1
-            slow = slow.next
-            fast = fast.next and fast.next.next
-        
-        # 退出循环有俩种情况，fast = None, 或者 slow == fast
-        if not fast:
-            return None
-        
-        # print(step)
         cur = head
-        print(step)
-        for _ in range(step):
-            cur = cur.next
+        while cur != slow:
+            cur, slow = cur.next, slow.next
         
         return cur
