@@ -10,7 +10,8 @@ class Solution:
             return None
         
         step = 0
-        slow = fast = head
+        slow = head
+        fast = head.next
         while fast and slow != fast:
             print(step)
             step += 1
@@ -21,8 +22,9 @@ class Solution:
         if not fast:
             return None
         
-        print(step)
+        # print(step)
         cur = head
+        print(step)
         for _ in range(step):
             cur = cur.next
         
