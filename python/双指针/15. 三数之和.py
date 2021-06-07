@@ -12,6 +12,7 @@ class Solution:
                 continue
             
             third = n - 1
+            # 这里用循环来实现双指针的一个指针，好处挺大
             for second in range(first + 1, n - 1):
                 if second > first + 1 and nums[second] == nums[second - 1]:
                     continue
@@ -19,6 +20,7 @@ class Solution:
                 while second < third and nums[first] + nums[second] + nums[third] > 0:
                     third -= 1
                 
+                # 这里是双指针O(n)的关键，third一直在逼近second，重合了就break
                 if second == third:
                     break
                 
