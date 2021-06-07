@@ -7,25 +7,29 @@ class Solution:
         n = len(nums)
         nums.sort()
 
-        for first in range(n):
+        for first in range(n - 2):
             if first > 0 and nums[first] == nums[first - 1]:
                 continue
             
-            third = n - 1
-            # 这里用循环来实现双指针的一个指针，好处挺大
-            for second in range(first + 1, n - 1):
-                if second > first + 1 and nums[second] == nums[second - 1]:
-                    continue
+            left = first + 1
+            right = n - 1
+            
+            while left < right:
+                s = nums[first] + nums[left] + nums[right]
+                n1 = nums[left]
+                n2 = nums[right]
                 
-                while second < third and nums[first] + nums[second] + nums[third] > 0:
-                    third -= 1
+                if s == 0:
+                    ans.append([nums[first], nums[left], nums[right]])
                 
-                # 这里是双指针O(n)的关键，third一直在逼近second，重合了就break
-                if second == third:
-                    break
+                    # 这里让left和right都一定挪到nums[left], nums[right]不相等的理由是，当 sum = 0时， nums[left]变小，那么nums[right]一定要变大，和才可能再次等于0
+                    while left < right and nums[left] == n1:
+                        left += 1
+                    while left < right and nums[right] == n2:
+                        right -= 1
+                elif s > 0:
+                    right -= 1
+                else:
+                    left += 1
                 
-                # 这里只需要找到一个third就好了，因为third再往左要么就是大小相同的重复结果，要么就是变小使和 < 0
-                if nums[first] + nums[second] + nums[third] == 0:
-                    ans.append([nums[first], nums[second], nums[third]])
-        
         return ans
