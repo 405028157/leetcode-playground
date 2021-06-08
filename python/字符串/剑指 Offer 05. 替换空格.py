@@ -3,10 +3,10 @@
 """
 class Solution:
     def replaceSpace(self, s: str) -> str:
-        res = ''
+        res = []
         for c in s:
             if c != ' ':
-                res += c
+                res.append(c)
             else:
-                res += '%20'
-        return res
+                res.append('%20')
+        return ''.join(res)
