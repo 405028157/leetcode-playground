@@ -4,7 +4,8 @@ class Solution:
         left = 0
         s = list(s)
         while left + k < n:
-            i, j = left, left + k
+            # k 个数，应该是[left, ..., left + k - 1]
+            i, j = left, left + k - 1
             while i < j:
                 s[i], s[j] = s[j], s[i]
                 i += 1
