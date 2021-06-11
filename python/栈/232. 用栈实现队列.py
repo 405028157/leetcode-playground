@@ -22,6 +22,10 @@ class MyQueue:
         """
         if self.empty():
             return None
+
+        if self.stack2:
+            return self.stack2.pop()
+
         while self.stack1:
             self.stack2.append(self.stack1.pop())
         
@@ -38,6 +42,10 @@ class MyQueue:
         """
         if self.empty():
             return None
+
+        if self.stack2:
+            return self.stack2[-1]
+
         while self.stack1:
             self.stack2.append(self.stack1.pop())
         
