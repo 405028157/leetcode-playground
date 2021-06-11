@@ -29,10 +29,7 @@ class MyQueue:
         while self.stack1:
             self.stack2.append(self.stack1.pop())
         
-        temp = self.stack2.pop()
-
-        while self.stack2:
-            self.stack1.append(self.stack2.pop())
+        return self.stack2.pop()
 
         # print(f'after pop: {self.stack1}')
         return temp
@@ -49,10 +46,7 @@ class MyQueue:
         while self.stack1:
             self.stack2.append(self.stack1.pop())
         
-        temp = self.stack2[-1]
-
-        while self.stack2:
-            self.stack1.append(self.stack2.pop())
+        return self.stack2[-1]
 
         # print(f'after peek: {self.stack1}')
         return temp
@@ -61,8 +55,9 @@ class MyQueue:
         """
         Returns whether the queue is empty.
         """
-        return not bool(self.stack1)
-
+        if self.stack1 or self.stack2:
+            return False
+        return True
 
 
 # Your MyQueue object will be instantiated and called as such:
