@@ -13,14 +13,7 @@ class MyStack:
         """
         Push element x onto stack.
         """
-        while self.queue1:
-            self.queue2.append(self.queue1.popleft())
-        
         self.queue1.append(x)
-
-        while self.queue2:
-            self.queue1.append(self.queue2.popleft())
-        
         # print(f'stack1 after push: {self.queue1}')
 
 
