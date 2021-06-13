@@ -28,8 +28,7 @@ class MyStack:
             if self.queue1:
                 self.queue2.append(last)
         
-        while self.queue2:
-            self.queue1.append(self.queue2.popleft())
+        self.queue1, self.queue2 = self.queue2, self.queue1
 
         # print(f'stack1 after pop: {self.queue1}')
         return last
@@ -42,8 +41,7 @@ class MyStack:
         while self.queue1:
             last = self.queue1.popleft()
             self.queue2.append(last)
-        while self.queue2:
-            self.queue1.append(self.queue2.popleft())
+        self.queue1, self.queue2 = self.queue2, self.queue1
         
         # print(f'stack1 after top: {self.queue1}')
         return last
