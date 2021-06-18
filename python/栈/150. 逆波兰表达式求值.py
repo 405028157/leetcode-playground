@@ -1,6 +1,5 @@
-import math
 class Solution:
-    def evalRPN(self, tokens: List[str]) -> int:
+    def evalRPN(self, tokens: list[str]) -> int:
         operator_hash = {
             '+': lambda x, y: x + y,
             '-': lambda x, y: x - y,
@@ -10,13 +9,13 @@ class Solution:
 
         stack = []
         for token in tokens:
-            try:
+            if token not in '+-*/':
                 num = int(token)
-            except:
+            else:
                 num2 = stack.pop()
                 num1 = stack.pop()
                 num = operator_hash[token](num1, num2)
-                print(f'token = {token}, num1 = {num1}, num2 = {num2}, num = {num}')
+                # print(f'token = {token}, num1 = {num1}, num2 = {num2}, num = {num}')
             stack.append(num)
         
         return stack.pop()
