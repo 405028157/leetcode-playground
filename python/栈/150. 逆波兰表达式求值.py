@@ -5,7 +5,7 @@ class Solution:
             '+': lambda x, y: x + y,
             '-': lambda x, y: x - y,
             '*': lambda x, y: x * y,
-            '/': lambda x, y: math.floor(x / y)
+            '/': lambda x, y: int(x / y)
         }
 
         stack = []
