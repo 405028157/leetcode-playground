@@ -12,21 +12,19 @@ class Solution:
     def levelOrder(self, root: TreeNode) -> list[list[int]]:
         if not root:
             return []
-        q1 = collections.deque()
-        q2 = collections.deque()
+        q = collections.deque()
         res = []
         
-        q1.append(root)
+        q.append(root)
 
-        while q1:
+        while q:
             cur_layer = []
-            while q1:
-                cur = q1.popleft()
+            for _ in range(len(q)):
+                cur = q.popleft()
                 cur_layer.append(cur.val)
-                cur.left and q2.append(cur.left)
-                cur.right and q2.append(cur.right)
+                cur.left and q.append(cur.left)
+                cur.right and q.append(cur.right)
             res.append(cur_layer)
-            q1, q2 = q2, q1
         
         return res
                 
