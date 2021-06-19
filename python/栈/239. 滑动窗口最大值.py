@@ -1,18 +1,18 @@
-"""
-heapq 用列表来维护堆，l[0]就是堆顶
-"""
-import heapq
+import collections
 class Solution:
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
+        q = collections.deque()
         n = len(nums)
-        q = [(-nums[i], i) for i in range(k)]
-        heapq.heapify(q)
-        res = [-q[0][0]]
+        res = []
 
-        for i in range(k, n):
-            heapq.heappush(q, (-nums[i], i))
-            while q[0][1] <= i - k:
-                heapq.heappop(q)
-            res.append(-q[0][0])
+        for i, num in enumerate(nums):
+            while q and q[0] <= i - k:
+                q.popleft()
+            while q and nums[q[-1]] < num:
+                q.pop()
+            q.append(i)
+
+            if i >= k - 1:
+                res.append(nums[q[0]])
         
         return res
