@@ -11,25 +11,21 @@ class TreeNode:
 class Solution:
     def isSymmetric(self, root: TreeNode) -> bool:
 
-        # 作用是判断以该节点为根的二叉树，是否是镜像对称的
-        def dfs(node: TreeNode):
-            print(node)
-            if not node:
-                return True
-
-            left = node.left
-            right = node.right
-            print(f'left = {left}, right = {right}')
-
-            # left, right 都为 None
+        def dfs(left: TreeNode, right: TreeNode):
+             # left, right 都为 None
             if not (left or right):
                 return True
 
             # left, right 其中之一为 None
             if not (left and right):
                 return False
+            
+            if left.val != right.val:
+                return False
+            
+            return dfs(left.left, right.right) and dfs(left.right, right.left)
 
-            return left.val == right.val and dfs(left) and dfs(right)
-        
-        return dfs(root)
+        if not root:
+            return True
+        return dfs(root.left, root.right)
             
