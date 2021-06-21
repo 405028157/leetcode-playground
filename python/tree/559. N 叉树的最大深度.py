@@ -11,11 +11,9 @@ class Solution:
         if not root:
             return 0
         
-        l = []
-        for child in root.children:
-            l.append(self.maxDepth(child))
-        
-        if not l:
+        if not root.children:
             return 1
+        
+        l = [self.maxDepth(child) for child in root.children]
         
         return max(l) + 1
