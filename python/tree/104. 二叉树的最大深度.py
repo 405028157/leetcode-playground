@@ -4,9 +4,18 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
+class Solution(object):
+    def maxDepth(self, root):
         if not root:
             return 0
-        
-        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+        queue = [root]
+        height = 0
+        while queue:
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            height += 1
+        return height
