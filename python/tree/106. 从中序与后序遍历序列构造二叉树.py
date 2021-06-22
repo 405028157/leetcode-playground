@@ -6,21 +6,17 @@ class TreeNode:
         self.right = right
 class Solution:
     def buildTree(self, inorder: list[int], postorder: list[int]) -> TreeNode:
-
-        def dfs(inorder, postorder):
-            if len(inorder) == 0:
-                return None
-            if len(inorder) == 1:
-                return TreeNode(inorder[0])
-            
-            top = postorder.pop() # 不会再用到了，所以可以pop
-            # 中序遍历的根节点index
-            inorder_root = inorder.index(top)
-
-            node = TreeNode(inorder[inorder_root])
-            node.left = dfs(inorder[0:inorder_root], postorder[0:inorder_root])
-            node.right = dfs(inorder[inorder_root + 1:], postorder[inorder_root:])
+        if len(inorder) == 0:
+            return None
+        if len(inorder) == 1:
+            return TreeNode(inorder[0])
         
-            return node
-        
-        return dfs(inorder, postorder)
+        top = postorder.pop() # 不会再用到了，所以可以pop
+        # 中序遍历的根节点index
+        inorder_root = inorder.index(top)
+
+        node = TreeNode(inorder[inorder_root])
+        node.left = self.buildTree(inorder[0:inorder_root], postorder[0:inorder_root])
+        node.right = self.buildTree(inorder[inorder_root + 1:], postorder[inorder_root:])
+    
+        return node
