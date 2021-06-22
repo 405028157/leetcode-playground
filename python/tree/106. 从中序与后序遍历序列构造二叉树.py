@@ -12,7 +12,7 @@ class Solution:
             return TreeNode(inorder[0])
         
         top = postorder.pop() # 不会再用到了，所以可以pop
-        # 中序遍历的根节点index
+        # 中序遍历的根节点index, 左子树的节点数量也正好是inorder_root
         inorder_root = inorder.index(top)
 
         node = TreeNode(inorder[inorder_root])
