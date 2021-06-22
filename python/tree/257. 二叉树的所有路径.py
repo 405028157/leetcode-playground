@@ -24,3 +24,29 @@ class Solution:
 
         dfs(root, [root.val])
         return res
+
+"""
+最快版本，注意push，pop时机
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        def dfs(root):
+            if not root:
+                return 
+
+            path.append(str(root.val))
+            if not root.right and not root.left:
+                res.append('->'.join(path))
+
+            dfs(root.left)
+            dfs(root.right)
+
+            path.pop()
+
+
+        path = []
+        res = []
+
+        dfs(root)
+
+        return res
+"""
