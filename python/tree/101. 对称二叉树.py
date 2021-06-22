@@ -12,7 +12,7 @@ class Solution:
     def isSymmetric(self, root: TreeNode) -> bool:
 
         def dfs(left: TreeNode, right: TreeNode):
-             # left, right 都为 None
+            # left, right 都为 None
             if not (left or right):
                 return True
 
