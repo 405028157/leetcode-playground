@@ -13,21 +13,13 @@ class Solution:
             if len(inorder) == 1:
                 return TreeNode(inorder[0])
             
+            top = postorder.pop() # 不会再用到了，所以可以pop
             # 中序遍历的根节点index
-            inorder_root = 0
-            print(postorder)
-            while inorder_root < len(inorder) and inorder[inorder_root] != postorder[-1]:
-                inorder_root += 1
-                # print(f'inorder_root = {inorder_root}, len(inorder) = {len(inorder)}, inorder = {inorder}, inorder[inorder_root] = {inorder[inorder_root]}, postorder = {postorder}, postorder[-1] = {postorder[-1]}')
-            
-            # 后序遍历的右子树第一个节点index
-            postorder_right = 0
-            while inorder_root + 1 < len(inorder) and postorder[postorder_right] != inorder[inorder_root + 1]:
-                postorder_right += 1
-            
+            inorder_root = inorder.index(top)
+
             node = TreeNode(inorder[inorder_root])
-            node.left = dfs(inorder[0:inorder_root], postorder[0:postorder_right])
-            node.right = dfs(inorder[inorder_root + 1:], postorder[postorder_right:-1])
+            node.left = dfs(inorder[0:inorder_root], postorder[0:inorder_root])
+            node.right = dfs(inorder[inorder_root + 1:], postorder[inorder_root:])
         
             return node
         
