@@ -19,7 +19,8 @@ class Solution:
         r = (l << 1) - 1
 
         while l < r:
-            mid = (l + r) >> 2
+            mid = (l + r) >> 1
+            print(mid)
             path = 1 << (depth - 1)
             cur = root
 
