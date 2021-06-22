@@ -19,9 +19,10 @@ class Solution:
         r = (l << 1) - 1
 
         while l < r:
-            mid = (l + r) >> 1
-            print(mid)
+            # 为了解决，l 和 r 相差一，不能退出循环的情况
+            mid = int((l + r + 1) / 2)
             path = 1 << (depth - 1)
+            # print(f'l = {l}, r = {r}, mid = {mid}, path = {path}')
             cur = root
 
             while path:
@@ -30,9 +31,11 @@ class Solution:
                 else:
                     cur = cur.left
                 path >>= 1
-            if node: # 使节点数为mid的节点存在，应该向右查找
-                l = mid + 1
+                # print(f'cur = {cur}')
+            if cur:
+                l = mid # 注意此处，使节点数为mid的节点存在，只能说明节点数至少为mid，不能说明节点数至少为mid+1
             else:
                 r = mid - 1
+            # print(f'after: l = {l}, r = {r}, mid = {mid}')
         
         return l
