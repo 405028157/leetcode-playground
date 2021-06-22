@@ -12,17 +12,19 @@ class Solution:
 
         def dfs(node: TreeNode, path: list):
             nonlocal res
-
+            
+            # 这里一定不能append，否则到处都只是一个path
+            path = path + [node.val]
             # 到达叶子节点
             if not(node.left or node.right):
                 res.append('->'.join(map(str, path)))
             
             if node.left:
-                dfs(node.left, path + [node.left.val])
+                dfs(node.left, path)
             if node.right:
-                dfs(node.right, path + [node.right.val])
+                dfs(node.right, path)
 
-        dfs(root, [root.val])
+        dfs(root, [])
         return res
 
 """
