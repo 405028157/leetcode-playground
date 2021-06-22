@@ -8,7 +8,7 @@ class Solution:
     def minDepth(self, root: TreeNode) -> int:
         if not root:
             return 0
-        min_depth = float(inf)
+        min_depth = float('inf')
 
         def dfs(node: TreeNode, depth: int):
             nonlocal min_depth
