@@ -1,3 +1,7 @@
+"""
+优化思路，一是设计函数只传下标，而不是数组，二是对inorder建字典，方便找到根节点位置
+"""
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
