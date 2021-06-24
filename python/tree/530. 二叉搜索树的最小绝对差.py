@@ -15,7 +15,8 @@ class Solution:
             
             inorder(node.left)
 
-            if not self.pre:
+            # 这里不能用 not self.pre，因为值是0，其实是有值，但是仍然被判定成 False
+            if self.pre == None:
                 self.pre = node.val
             else:
                 self.min_abs = min(abs(node.val - self.pre), self.min_abs)
