@@ -19,6 +19,7 @@ class Solution:
                 self.pre = node.val
             else:
                 self.min_abs = min(abs(node.val - self.pre), self.min_abs)
+                self.pre = node.val
             
             inorder(node.right)
         
