@@ -6,16 +6,19 @@ class TreeNode:
         self.right = right
 class Solution:
     def constructMaximumBinaryTree(self, nums: list[int]) -> TreeNode:
+        # 区间是 [left_index, right_index]
         def build(left_index, right_index):
             if left_index > right_index:
                 return None
-            root_value = max(nums[left_index: right_index+1])
-            root_index = hash_nums[root_value]
-            root = TreeNode(root_value)
-            root.left = build(left_index, root_index-1)
-            root.right = build(root_index+1, right_index)
-            return root
+            if left_index == right_index:
+                return TreeNode(nums[left_index])
+            
+            root_value = max(nums[left_index: right_index + 1])
+            root_index = dic[root_value]
+            node = TreeNode(nums[root_index])
+            node.left = build(left_index, root_index - 1)
+            node.right = build(root_index + 1, right_index)
+            return node
 
-
-        hash_nums = {nums[i]:i for i in range(len(nums))}
-        return build(0, len(nums)-1)
+        dic = {element: i for i, element in enumerate(nums)}
+        return build(0, len(nums) - 1)
