@@ -1,5 +1,6 @@
 """
 优化思路，一是设计函数只传下标，而不是数组，二是对inorder建字典，方便找到根节点位置
+
 """
 
 # Definition for a binary tree node.
@@ -11,18 +12,21 @@ class TreeNode:
 class Solution:
     def buildTree(self, preorder: list[int], inorder: list[int]) -> TreeNode:
 
-        if len(preorder) == 0:
-            return None
+        """
+        preorder[pre_left, ..., pre_right], inorder[in_left, ..., in_right]
+        """
+        def build(pre_left, pre_right, in_left, in_right):
+            if pre_left > pre_right:
+                return None
+            if pre_left == pre_right:
+                return TreeNode(preorder[pre_left])
         
-        if len(preorder) == 1:
-            return TreeNode(preorder[0])
-        
-        top = preorder.pop(0)
-        # 中序遍历的根节点index，左子树的节点数量也正好是inorder_root
-        inorder_root = inorder.index(top)
+            root_index = dic[preorder[pre_left]]
+            node = TreeNode(preorder[pre_left])
+            # [in_left, root_index - 1]  左子树节点数量 root_index - in_left
+            node.left = build(pre_left + 1, pre_left + root_index - in_left, in_left, root_index - 1)
+            node.right = build(pre_left + root_index - in_left + 1, pre_right, root_index + 1, in_right)
+            return node
 
-        node = TreeNode(top)
-        node.left = self.buildTree(preorder[0:inorder_root], inorder[0:inorder_root])
-        node.right = self.buildTree(preorder[inorder_root:], inorder[inorder_root + 1:])
-        
-        return node
+        dic = {element: i for i, element in enumerate(inorder)}
+        return build(0, len(preorder) - 1, 0, len(inorder) - 1)
