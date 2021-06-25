@@ -10,22 +10,19 @@ class Solution:
             return None
         
         if key > root.val:
-            self.deleteNode(root.right, key)
+            root.right = self.deleteNode(root.right, key)
         elif key < root.val:
-            self.deleteNode(root.left, key)
+            root.left = self.deleteNode(root.left, key)
         else:
-            print(root)
+            # print(root)
             if root.left and root.right:
                 min_rnode = self.find_min(root.right)
                 root.val = min_rnode.val
-                self.deleteNode(root.right, root.val)
+                root.right = self.deleteNode(root.right, root.val)
             else:
                 # 严格的条件要先判断，
                 # 左右子树都为空，其实可以省略，下面俩个分支能帮忙做
                 if not (root.left or root.right):
-                    """
-                    这里有bug，使root指向None，并不会释放root原来指向的内存空间的对象
-                    """
                     root = None
                 # 左子树为空
                 elif not root.left:
