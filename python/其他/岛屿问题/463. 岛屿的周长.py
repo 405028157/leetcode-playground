@@ -22,3 +22,8 @@ class Solution:
                     perimeter += calculate_length(i, j)
 
         return perimeter
+
+"""
+有个dfs的解法，推荐看 https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/，很有启发，即dfs在往下递归的时候，
+比如由dfs(x, y)到dfs(x+1, y)这个过程其实”跨过“了一条边
+"""
