@@ -39,7 +39,7 @@ class Solution:
             for j in range(n):
                 if grid[i][j] == '1':
                     for x, y in [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]:
-                        if grid[x][y] == '1' and 0 <= x < m and 0 <= y < n:
+                        if 0 <= x < m and 0 <= y < n and grid[x][y] == '1':
                             uf.union(i * n + j, x * n + y)
 
         return uf.count
