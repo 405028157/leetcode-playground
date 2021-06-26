@@ -1,3 +1,7 @@
+"""
+pop操作其实不需要，可以用下标前进来模拟
+"""
+
 class Solution:
     def findContentChildren(self, g: list[int], s: list[int]) -> int:
         s.sort()
@@ -18,3 +22,22 @@ class Solution:
                 return num
         
         return num
+
+"""
+用下标前进来模拟
+def findContentChildren(self, g: list[int], s: list[int]) -> int:
+        if not (g and s):
+            return 0
+
+        s.sort()
+        g.sort()
+        num = 0
+
+        i, j = 0, 0
+        while i < len(g) and j < len(s):
+            if s[j] >= g[i]:
+                i += 1
+            j += 1
+        
+        return i
+"""
