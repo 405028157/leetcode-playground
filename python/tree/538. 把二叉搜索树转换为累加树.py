@@ -12,26 +12,18 @@ class Solution:
     def convertBST(self, root: TreeNode) -> TreeNode:
         if not root:
             return None
-        val_list = []
 
+        pre = None
         def dfs(root: TreeNode):
-            if not root:
-                return
-            
-            dfs(root.left)
-            val_list.append(root.val)
-            dfs(root.right)
-
-        dfs(root)
-        dic = {element: i for i, element in enumerate(val_list)}
-
-        def convert(root: TreeNode):
+            nonlocal pre
             if not root:
                 return None
             
-            root.val = sum(val_list[dic[root.val]:])
-            convert(root.left)
-            convert(root.right)
+            dfs(root.right) # 这里可以不用接收返回值
+            if pre != None:
+                root.val = root.val + pre
+            pre = root.val
+            dfs(root.left) # 这里可以不用接收返回值
+            return root
         
-        convert(root)
-        return root
+        return dfs(root)
