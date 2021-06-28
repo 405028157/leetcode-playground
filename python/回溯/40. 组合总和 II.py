@@ -21,7 +21,7 @@ class Solution:
             # 遇到了连续相同的值单独处理下
             if cur < n - 1 and candidates[cur] == candidates[cur + 1]:
                 index = cur + 1
-                while candidates[index] == candidates[cur]:
+                while index < n and candidates[index] == candidates[cur]:
                     index += 1
                 # 下标[cur, cur + 1, ..., index - 1]的值相同
                 
@@ -32,6 +32,9 @@ class Solution:
                     path.append(candidates[cur])
                     dfs(index, sum - candidates[cur] * i)
                 
+                # 这里要pop，因为这个分支上一层，上上一层可能还有分支，可能只位于一棵大树的小分支
+                for _ in range(index - cur):
+                    path.pop()
                 return
             
             # 不是连续相同的值，正常处理
