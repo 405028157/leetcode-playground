@@ -4,25 +4,24 @@ class Solution:
         ans = []
 
         def dfs(cur: int):
-            # print(cur)
             if len(combination) == k:
-                # print('a')
                 ans.append(combination[:])
                 return
             
-            # 剪枝
-            if len(combination) + (n - cur) < k:
-                # print('b')
+            # 每层做下层的决定，所以 cur > n，说明到最底层了
+            if cur > n:
                 return
+            
+            # 剪枝
+            # [cur, ..., n]
+            if n - cur + 1 + len(combination) < k:
+                return
+            
 
-            # [cur+1, cur+2, ..., n]
-            for i in range(cur + 1, n + 1):
-                combination.append(i)
-                dfs(i)
-                combination.pop()
+            combination.append(cur)
+            dfs(cur + 1)
+            combination.pop()
+            dfs(cur + 1)
         
-        dfs(0)
+        dfs(1)
         return ans
-                
-
-        
