@@ -35,6 +35,7 @@ class Solution:
                 # 这里要pop，因为这个分支上一层，上上一层可能还有分支，可能只位于一棵大树的小分支
                 for _ in range(index - cur):
                     path.pop()
+                # 可以替换成 path = path[:cur - index)]
                 return
             
             # 不是连续相同的值，正常处理
