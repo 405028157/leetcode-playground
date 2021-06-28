@@ -1,3 +1,36 @@
+"""
+在递归时会先选择小的数，再选择大的数，可以优化剪枝
+"""
+
+import collections
+class Solution:
+    def combinationSum2(self, candidates: list[int], target: int) -> list[list[int]]:
+        def dfs(pos: int, rest: int):
+            nonlocal sequence
+            if rest == 0:
+                ans.append(sequence[:])
+                return
+            if pos == len(freq) or rest < freq[pos][0]:
+                return
+            
+            dfs(pos + 1, rest)
+
+            # 最多出现 most 次，让rest成负数不行，超过出现次数也不行
+            most = min(rest // freq[pos][0], freq[pos][1])
+            for i in range(1, most + 1):
+                sequence.append(freq[pos][0])
+                dfs(pos + 1, rest - i * freq[pos][0])
+            # 去掉 most 个数
+            sequence = sequence[:-most]
+        
+        freq = sorted(collections.Counter(candidates).items())
+        ans = list()
+        sequence = list()
+        dfs(0, target)
+        return ans
+
+"""
+原来的答案也值得看一下
 class Solution:
     def combinationSum2(self, candidates: list[int], target: int) -> list[list[int]]:
         # [1, 1, 1, 3] 这种只能用set来去重
@@ -48,7 +81,7 @@ class Solution:
 
         return ans
 
-"""
+
 candidates = [1, 2, 2, 2, 5]
 cur = 0, path = [], sum = 5
 	cur = 1, path = [1], sum = 4
