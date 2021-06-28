@@ -1,8 +1,8 @@
 class Solution:
     def rotateGrid(self, grid: list[list[int]], k: int) -> list[list[int]]:
         m, n = len(grid), len(grid[0])
-        nlayer = int(m / 2)
-        print(f'm = {m}, n = {n}')
+        nlayer = min(int(m / 2), int(n / 2))
+        # print(f'm = {m}, n = {n}')
         for layer in range(nlayer):
             print(layer)
             row, col, val = [], [], []
@@ -11,7 +11,7 @@ class Solution:
             for r in range(layer, m - layer - 1):
                 row.append(r)
                 col.append(layer)
-                print(f'r = {r}, layer = {layer}')
+                # print(f'r = {r}, layer = {layer}')
                 val.append(grid[r][layer])
             
             # 下
