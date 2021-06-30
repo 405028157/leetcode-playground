@@ -1,10 +1,9 @@
 class Solution:
     def combinationSum4(self, nums: list[int], target: int) -> int:
-        n = len(nums)
         ans = 0
         
 
-        def dfs(index: int, rest:int):
+        def dfs(rest:int):
             nonlocal ans
             if rest == 0:
                 ans += 1
@@ -13,14 +12,11 @@ class Solution:
             # 题目没说整数不可以是负数，先当做不可以吧
             if rest < 0:
                 return
-            
-            if index >= n:
-                return
 
-            dfs(index + 1, rest)
-            dfs(index, rest - nums[index])
+            for num in nums:
+                dfs(rest - num)
         
-        dfs(0, target)
+        dfs(target)
         return ans
             
                 
