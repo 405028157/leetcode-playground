@@ -19,3 +19,13 @@ class Solution:
             return ans
         
         return ((pow(5, even_digit) % 1000000007) * (pow(4, odd_digit) % 1000000007)) % 1000000007
+
+
+"""
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        od = n >> 1
+        ev = n - od
+        ans = pow(5, ev, 1000000007) * pow(4, od, 1000000007) % 1000000007
+        return ans
+"""
