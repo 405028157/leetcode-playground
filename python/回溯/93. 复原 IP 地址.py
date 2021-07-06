@@ -16,15 +16,18 @@ class Solution:
             if len(combination) == 4 and start == n:
                 res.append('.'.join(combination))
 
-            for i in range(3):
+            # i = [1,3]
+            for i in range(1, 4):
                 temp = s[start: start + i]
-                print(temp)
+                # 切片超出范围，temp为空
+                if not temp:
+                    break
                 if int(temp) > 255:
                     break
                 if len(temp) > 1 and temp[0] == '0':
                     break
 
-                dfs(combination.append(temp), start + i)
+                dfs(combination + [temp], start + i)
         
         
         dfs([], 0)
