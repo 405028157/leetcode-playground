@@ -1,11 +1,15 @@
 class Solution:
     def subsets(self, nums: list[int]) -> list[list[int]]:
-        res = [[]]
+        res = []
         n = len(nums)
 
-        for l in range(1, n + 1):
-            for start in range(0, n):
-                if start + l <= n:
-                    res.append(nums[start: start + l])
+        def dfs(combination: list[int], index: int):
+            if index >= n:
+                res.append(combination[:])
+                return
+            
+            dfs(combination[:], index + 1)
+            dfs(combination + [nums[index]], index + 1)
         
+        dfs([], 0)
         return res
