@@ -7,7 +7,7 @@ class Heap:
         size = len(self.l) - 1
 
         i = size
-        while self.l[i >> 1] < self.l[i]:
+        while self.l[i >> 1] < item:
             self.l[i] = self.l[i >> 1]
             i >>= 1
         self.l[i] = item
@@ -28,12 +28,13 @@ class Heap:
             if child + 1 <= size and self.l[child + 1] > self.l[child]:
                 child += 1
             
-            if self.l[parent] > self.l[child]:
+            if temp > self.l[child]:
                 break
             self.l[parent] = self.l[child]
             parent = child
         
         self.l[parent] = temp
+        self.l.pop()
         return ret        
         
 
@@ -49,5 +50,6 @@ h.insert(14)
 h.insert(16)
 print(h.l)
 
+print(h.delete())
 print(h.delete())
 print(h.delete())
