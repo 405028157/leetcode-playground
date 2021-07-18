@@ -14,10 +14,10 @@ class Solution:
         length = len(strs)
         dp = [[[0] * (n + 1) for _ in range(m + 1)] for __ in range(length + 1)]
         
-        # i = 0, 或 j = 0， 或 k = 0 时，对应的所有元素都是0，所以初始化省了
+        # i = 0, 或 j = 0 且 k = 0 时，对应的所有元素都是0，所以初始化省了
         for i in range(1, length + 1):
-            for j in range(1, m + 1):
-                for k in range(1, n + 1):
+            for j in range(0, m + 1):
+                for k in range(0, n + 1):
                     count = dic[strs[i - 1]]
                     count_0 = count[0]
                     count_1 = count[1]
