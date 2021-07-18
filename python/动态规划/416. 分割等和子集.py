@@ -2,7 +2,7 @@
 把这道题想象成有一个容量为sum(nums) / 2的背包，看看能不能正好把这个背包填满
 """
 class Solution:
-    def canPartition(self, nums: List[int]) -> bool:
+    def canPartition(self, nums: list[int]) -> bool:
         total, n = sum(nums), len(nums)
         if total % 2 == 1 or n == 1:
             return False
