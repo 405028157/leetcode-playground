@@ -18,12 +18,37 @@ class Solution:
         for i in range(1001, 3001):
             dp[0][i] = 0
         
+        # i 和 j的range都正常写，在访问dp的时候，再对j+1000
         for i in range(1, n + 1):
             for j in range(-1000, 1001):
                 dp[i][j + 1000] = dp[i - 1][j - nums[i - 1] + 1000] + dp[i - 1][j + nums[i - 1] + 1000]
 
         return dp[n][target + 1000]
+
+
+"""
+https://leetcode-cn.com/problems/target-sum/solution/494-mu-biao-he-dong-tai-gui-hua-zhi-01be-78ll/
+更好的思路，以及空间优化 -> 装满背包有多少种方案
+"""
+class Solution:
+    def findTargetSumWays(self, nums: list[int], target: int) -> int:
+        total = sum(nums)
+        if (total + target) % 2 == 1 or total < target:
+            return 0
+
+        C = (total + target) >> 1
+        dp = [0 for _ in range(C + 1)]
+        dp[0] = 1
+    
+        n = len(nums)
         
+        for i in range(1, n + 1):
+            for j in range(C, nums[i - 1] - 1, -1):
+                # dp[i][j] = dp[i - 1][j] + dp[i - 1][j - nums[i - 1]]
+                dp[j] = dp[j] + dp[j - nums[i - 1]]
+        # print(dp)
+        return dp[C]
+
 
 """
 回溯 超时
