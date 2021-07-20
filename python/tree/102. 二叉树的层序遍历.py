@@ -24,6 +24,7 @@ class Solution:
                 cur_layer.append(cur.val)
                 cur.left and q.append(cur.left)
                 cur.right and q.append(cur.right)
+            # 这里确实可以不切片
             res.append(cur_layer)
         
         return res
