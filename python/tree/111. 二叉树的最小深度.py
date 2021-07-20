@@ -1,3 +1,7 @@
+"""
+思路是回溯，dfs到每个叶子节点，然后检查一下当前的深度就好了。
+"""
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
