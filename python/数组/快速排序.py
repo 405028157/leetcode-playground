@@ -4,6 +4,7 @@ def partition(A: list[int], left: int, right: int):
     i, j = left, right
 
     while i < j:
+        # 这里一定要先处理j，不能先处理i
         while i < j and A[j] >= A[left]:
             j -= 1
         while i < j and A[i] <= A[left]:
