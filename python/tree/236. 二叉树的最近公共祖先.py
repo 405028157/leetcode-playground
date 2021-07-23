@@ -1,5 +1,7 @@
 """
 https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/
+
+后序遍历是从下往上遍历的神器
 """
 
 # Definition for a binary tree node.
