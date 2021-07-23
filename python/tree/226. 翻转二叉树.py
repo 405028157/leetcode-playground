@@ -26,3 +26,23 @@ class Solution:
             node.right and q.append(node.right)
         
         return root
+
+
+"""
+有个很经典的bug版本
+"""
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        
+        if not (root.left or root.right):
+            return root
+        
+        # 这条语句之后，root.left 和 root.right 就相同了
+        root.left = self.invertTree(root.right)
+        
+        root.right = self.invertTree(root.left)
+    
+        return root
