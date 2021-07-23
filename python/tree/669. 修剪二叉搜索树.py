@@ -1,5 +1,10 @@
 """
-用后序遍历，从下往上找要删除的节点，此时找到每个要删除的节点不可能同时有左右子树，因为要么左子树更小，早就被删，要么右子树更大，也早就被删。
+用后序遍历，从下往上找要删除的节点。首先后序遍历，是从下往上删的，因此，只需要检查当前节点是否需要删，若当前节点不需要删，他的孩子也不用管，因为已经先一步维
+持到了应该的状态。其次，若当前节点需要删，当前节点最多有一个孩子（就可以简单的把孩子提到当前节点的位置），因为若当前节点node不在范围[low, high]里，那么若node.val < low,
+则曾经node.left.val < node.val < low, 左孩子早被删，或者若node.val > high, 则曾经node.right.val > node.val > high，右孩子早被删。也有可能左，右孩子都被删，
+比如node.left.val < node.val < node.right.val < low。但是一旦有剩下的孩子，则孩子一定满足条件（因为是从下往上删的）
+
+https://leetcode-cn.com/problems/trim-a-binary-search-tree/solution/li-yong-hou-xu-bian-li-he-er-cha-shu-de-dzrtx/
 """
 
 # Definition for a binary tree node.
