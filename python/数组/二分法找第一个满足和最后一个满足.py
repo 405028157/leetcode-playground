@@ -19,6 +19,7 @@ def findFirstPosition(nums, target):
         else:
             r = mid - 1
     
+    # [1,2,3,4] 找 5，   [1,2,4,5] 找 3
     if l >= len(nums) or nums[l] != target:
         return -1
     
@@ -37,7 +38,8 @@ def findLastPosition(nums,target):
             l = mid + 1
         else:
             r = mid - 1
-    
+
+    # [1,2,3,4] 找 0，   [1,2,4,5] 找 3
     if r == -1 or nums[r] != target:
         return -1
     
