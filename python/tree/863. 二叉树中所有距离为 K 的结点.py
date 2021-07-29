@@ -6,7 +6,7 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> list[int]:
         dic = {}
         res = []
 
