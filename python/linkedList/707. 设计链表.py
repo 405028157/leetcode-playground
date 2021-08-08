@@ -59,7 +59,7 @@ class MyLinkedList:
         self.size += 1
         # find predecessor of the node to be added
         pred = self.head
-        # index是从0开始的，所以range(index)正好小1
+        # 链表有dummyHead
         for _ in range(index):
             pred = pred.next
 
